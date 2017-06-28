@@ -1,0 +1,356 @@
+
+body {
+  margin: 0;
+  min-width: 960px;
+  font: 16px "Microsoft Yahei", sans-serif ;
+  color: #000;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+p,
+h1 {
+  margin: 0;
+}
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.clear-fix:after {
+  display: block;
+  clear: both;
+  content: '';
+  height: 0;
+}
+.header {
+  display: flex;
+  background-color: #000;
+}
+.logo-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1 1 0;
+}
+.logo {
+  width: 480px;
+  height: 75px;
+  flex: none;
+  background: url(https://raw.githubusercontent.com/lazysheep666/efe-task/master/phase2/img/logo.gif) center left no-repeat;
+}
+.nav-container {
+  display: flex;
+  flex: 1 1 0;
+}
+.nav {
+  display: flex;
+}
+.nav-item {
+  position: relative;
+  margin: 0 40px 0 0;
+  font-size: 16px;
+}
+.nav-item:hover {
+  background-color: #303030;
+}
+.nav-item:hover .nav-sub {
+  display: block;
+}
+.nav-item a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  line-height: 75px;
+}
+.nav-sub {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 150px;
+  color: #fff;
+  text-align: right;
+  background-color: #303030;
+}
+.nav-sub-item {
+  padding-right: 5px;
+  line-height: 50px;
+}
+.nav-sub-item:hover {
+  background-color: #000;
+}
+.nav-item-icon {
+  display: inline-block;
+  margin-left: 3px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  transform:rotate(-45deg);
+}
+.banner {
+  display: flex;
+  background-color: #2d7079;
+}
+.banner-text-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  flex: 1 1 50%;
+}
+.banner-text {
+  position: absolute;
+  right: 0;
+  width: 480px;
+  height: 230px;
+  padding: 30px 0 0 0;
+}
+.opcity-text {
+  opacity: 0.5
+}
+.banner-text p {
+  color: #96B7BC;
+  font-size: 32px;
+}
+.banner-text h1 {
+  color: #fff;
+  font-size: 44px;
+}
+.banner-pic-container {
+  display: flex;
+  flex: 1 1 50%;
+  overflow: hidden;
+}
+.main {
+  margin: 20px auto;
+  width: 960px;
+}
+.section {
+  float: left;
+  padding: 10px;
+  width: 280px;
+  height: 220px;
+}
+.section-1{
+  margin-right: 15px;
+}
+.section-2 {
+  margin: 0 15px 0 15px;
+}
+.section-3 {
+  margin-left: 15px;
+}
+.section-title {
+  position: relative;
+}
+.section-title-text {
+  float: left;
+}
+.section-title-text h1 {
+  font-size: 48px;
+}
+.section-title-text p {
+  position: absolute;
+  bottom: 0;
+  font-size: 24px;
+  color: #b5b2b2;
+}
+.section-title-pic {
+  float: right;
+}
+.section-content-text {
+  margin-top: 30px;
+  font-size: 16px;
+}
+.center {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.center-pic-container {
+  width: 400%;
+}
+.center-pic {
+  float: left;
+  position: relative;
+  font-size: 0;
+}
+.center-pic-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+.center-pic-changes {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.center-pic-change {
+  margin: 10px;
+  width: 30px;
+  border-bottom: 3px solid #d3d3d3;
+}
+.center-pic-on {
+  border-bottom: 3px solid #7b7979;
+}
+.execl-tabs {
+  display: flex;
+  margin-top: 20px;
+  font-size: 24px;
+}
+.execl-tab {
+  flex: 1 0 0;
+  height: 60px;
+  border-bottom: 2px solid #d3d3d3;
+  text-align: center;
+  line-height: 60px;
+}
+.execl-tab a {
+  display: inline-block;
+  width: 100%;
+}
+.execl-tab-on {
+  border: 2px solid #d3d3d3;
+  border-bottom: 0;
+}
+.execl-table-caption {
+  padding-left: 20px;
+  height: 120px;
+  border-bottom: 2px solid #d3d3d3;
+  line-height: 120px;
+}
+.execl-table {
+  display: none;
+  width: 100%;
+  border-collapse: collapse;
+}
+.execl-table-on {
+  display: block;
+}
+.execl-table tr {
+  border-bottom:  2px solid #d3d3d3;
+}
+.execl-table td {
+  height: 60px;
+  padding: 0 20px 0 20px;
+  width: 25%;
+  text-align: center;
+  vertical-align: middle;
+}
+.execl-table th {
+  padding: 20px;
+  height: 20px;
+  font-size: 18px;
+}
+.execl-table tr td:nth-child(1),
+.execl-table tr td:nth-child(3){
+  background-color: #eee;
+}
+.execl-table tr td:nth-child(1) {
+  font-size: 18px;
+}
+.price-row {
+  font-size: 18px;
+}
+.price-free {
+  color: #009688;
+}
+.price-person {
+  color: #2196f3;
+}
+.price-person span ,
+.price-company span{
+  font-size: 8px;
+  vertical-align: top;
+}
+.price-company {
+  color: #f44336;
+}
+.form {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+}
+.form-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  flex: none;
+  width: 535px;
+  height: 220px;
+  background: url(https://raw.githubusercontent.com/lazysheep666/efe-task/master/phase2/img/form-choice.gif) no-repeat;
+}
+.submit-form-pic {
+  flex: 1 0 auto;
+}
+.form-item {
+  position: relative;
+  display: flex;
+  flex:none;
+  height: 30px;
+  margin-bottom: 10px;
+  margin-left: 70px;
+}
+.select-item {
+  padding-left: 10px;
+  width: 190px;
+  border: 2px solid #b5b3bc;
+  border-radius: 0px;
+  background: #fff url(https://raw.githubusercontent.com/lazysheep666/efe-task/master/phase2/img/choice-icon.gif) right no-repeat;
+  outline: none;
+}
+.country-choices,
+.city-choices {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999999;
+  width: 201px;
+  height: 150px;
+  border: 2px solid #b5b3bc;
+  border-top: 0;
+  background-color: #fff;
+}
+.country-choice,
+.city-choice {
+  padding-left: 20px;
+  line-height: 30px;
+}
+.country-choice:hover,
+.city-choice:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.select-on {
+  display: block;
+}
+.input-email {
+  padding-left: 10px;
+  width: 190px;
+  border: 2px solid #b5b3bc;
+  font-size: 12px;
+  outline: none;
+}
+.form-submit {
+  margin-left: 20px;
+  width: 100px;
+  background: linear-gradient(to top, #6f839f, #fff);
+  border: 2px solid #b5b3bc;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+.footer {
+  margin-top: 50px;
+}
+.footer-content {
+  text-align: center;
+  font-size: 14px;
+}

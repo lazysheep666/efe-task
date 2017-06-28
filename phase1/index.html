@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+  * {
+margin: 0;
+padding: 0;
+background-color: #f0f0f0;
+}
+.row {
+display: flex;
+flex-flow: row;
+}
+.row > div {
+margin: 5px;
+height: 100px;
+border: 1px solid #888;
+background-color: #c0c0c0;
+}
+#container-1 {
+display: flex;
+flex-direction: column;
+padding: 5px;
+margin: 10px;
+border: 2px solid #888;
+}
+.alignLayout {
+display: flex;
+flex-flow: column;
+}
+[class ^= 'align-row-'] > .box {
+width: 100px;
+}
+.align-row-2 {
+justify-content: flex-end;
+}
+.gridLayout {
+dispay: flex;
+flex-flow: column;
+}
+.grid-row-1 {
+margin-top: 40px;
+}
+[class ^= "grid-row-"] > .gird {
+flex: auto;
+}
+.HolyGrid {
+display: flex;
+flex-flow: column;
+height: 300px;
+}
+.HolyGrid > .header, .HolyGrid > .footer {
+flex: none;
+margin: 5px;
+padding: 50x;
+height: 50px;
+border: 2px solid #888;
+background-color: #c0c0c0;
+}
+.HolyGrid > .header {
+margin-top: 40px;
+}
+.HolyGrid > .main {
+display: flex;
+flex-flow: column;
+flex: auto;
+}
+.main > .center {
+flex: auto;
+margin: 5px;
+background-color: #c0c0c0;
+}
+.main > .left-nav {
+order: -1;
+}
+.main > .left-nav , .right-nav{
+margin: 5px;
+width: 80px;
+background-color: #888;
+}
+#container-2 {
+  display: flex;
+  padding: 5px;
+  margin: 50px 10px 10px 10px;
+  height: 150px;
+  border: 2px solid #888;
+}
+
+#container-3 {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 50px 10px 10px 10px;
+  height: 150px;
+  border: 2px solid #888;
+}
+#container-2 > .picture {
+flex-shrink: 0;
+margin-right: 15px;
+width: 100px;
+height: 100px;
+background-color: #c0c0c0;
+}
+#container-2 > .text-container{
+flex: 1;
+}
+
+#container-3 > div {
+  margin: 5px;
+  height: 100px;
+  width: 100px;
+  min-width: 100px;
+  border: 2px solid #888;
+  background-color: #c0c0c0;
+}
+  </style>
+</head>
+<body>
+  <div id="container-1">
+    <div class="alignLayout">
+      <div class="align-row-1 row">
+        <div class='box'></div>
+        <div class='box'></div>
+        <div class='box'></div>
+      </div>
+    <div class="align-row-2 row">
+      <div class='box'></div>
+      <div class='box'></div>
+      <div class='box'></div>
+    </div>
+    </div>
+  <div class="gridLayout">
+    <div class="grid-row-1 row">
+      <div class='gird'></div>
+    </div>
+    <div class="grid-row-2 row">
+      <div class='gird'></div>
+      <div class='gird'></div>
+    </div>
+    <div class="grid-row-3 row">
+      <div class='gird'></div>
+      <div class='gird'></div>
+      <div class='gird'></div>
+    </div>
+    <div class="grid-row-4 row">
+      <div class='gird'></div>
+      <div class='gird'></div>
+      <div class='gird'></div>
+      <div class='gird'></div>
+    </div>
+  </div>
+  <div class="HolyGrid">
+      <div class="header"></div>
+      <div class="main">
+        <div class="center"></div>
+        <div class="left-nav"></div>
+        <div class="right-nav"></div>
+      </div>
+      <div class="footer"></div>
+  </div>
+</div>
+
+  <div id="container-2">
+    <div class="picture"></div>
+    <div class="text-container">
+      <p>
+        SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing SomeThing
+      </p>
+    </div>
+  </div>
+  <div id="container-3">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</body>
+</html>
