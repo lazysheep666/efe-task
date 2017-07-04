@@ -54,6 +54,6 @@ else {
 */
 
 addLsNavHeight()();
-window.addEventListener('resize', setLsNavHeight, false);
+window.addEventListener('resize', addLsNavHeight(), false);
 window.addEventListener('scroll', showFixedHead, false);
 window.addEventListener('scroll', addLsNavHeight(), false);
