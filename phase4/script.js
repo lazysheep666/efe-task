@@ -1,7 +1,6 @@
 /**
  * 浏览器加载二级导航的数据并生成导航树
  */
-
 function getNavData() {
   const LS_NAV_SUBS = document.getElementsByClassName('ls-nav-subs');
   for (let i = 0, len = LS_NAV_SUBS.length; i < len; i++) {
@@ -14,11 +13,44 @@ function getNavData() {
 }
 
 /**
+ * 浏览器加载表格数据生成表格
+ */
+function getTableData() {
+  const RS_TABLE = document.getElementsByClassName('rs-table')[0];
+  let rsTableDataString = ''
+    +  '<tr class="t-head being-fixed hide">'
+    +    '<th>TableHead</th>'
+    +    '<th>TableHead</th>'
+    +    '<th>Head</th>'
+    +    '<th>TableHead</th>'
+    +  '</tr>'
+    +  '<tr class="t-head">'
+    +    '<th>TableHead</th>'
+    +    '<th>TableHead</th>'
+    +    '<th>Head</th>'
+    +    '<th>TableHead</th>'
+    +  '</tr>';
+  for(let item in rsTableData) {
+    let rowDataString = '';
+    let productName = rsTableData[item].content.split(' ')[0];
+    let productPrice = rsTableData[item].content.split(' ')[1];
+    rowDataString = ''
+      + '<tr class="row">'
+      +   `<td>${productName}</td>`
+      +   `<td>${productPrice}</td>`
+      +   '<td class="rs-table-edit">Edite</td>'
+      +   '<td class="rs-table-delete">Delete</td>'
+      + '</tr>';
+    rsTableDataString += rowDataString;
+  }
+  RS_TABLE.innerHTML = rsTableDataString;
+}
+
+/**
  * 当点击左侧一级导航时触发
  * 显示或者收起二级导航
  * @event .ls-nav
  */
-
 function toggleLsSubNav(event) {
   if (event.target.className === 'ls-nav-sup') {
     const CURR_NAV_SUBS = event.target.nextElementSibling;
@@ -47,10 +79,9 @@ function toggleLsSubNav(event) {
  * 自适应左侧栏的导航的高度
  * @event window
  */
-
 function addLsNavHeight() {
   let pageHeight = document.documentElement.clientHeight;
-  let newHeight = pageHeight - LS_NAV.getBoundingClientRect().top;
+  let newHeight = pageHeight - LS_NAV.getBoundingClientRect().top - 2;
   LS_NAV.style.height = maxHeight >= newHeight ? newHeight + 'px' : maxHeight + 'px';
  }
 
@@ -59,14 +90,14 @@ function addLsNavHeight() {
  * 若右侧栏的表格表头的Top超出浏览器时，出现一个固定在浏览器窗口顶部的表头
  * @event window
  */
-
 function showFixedHead() {
 const TABLE = document.getElementsByClassName('rs-table')[0];
 let tableOffsetTop = TABLE.offsetTop;
 let tableOffsetLeft = TABLE.offsetLeft;
 if (window.scrollY >= tableOffsetTop) {
   //固定的表头
-  const F_HEAD = document.getElementsByClassName('fixed-head')[0];
+  const F_HEAD = document.getElementsByTagName('table')[0]
+                         .getElementsByClassName('being-fixed')[0];
   //表头
   const HEAD = document.getElementsByClassName('t-head')[1];
   F_HEAD.classList.remove('hide');
@@ -84,21 +115,55 @@ if (window.scrollY >= tableOffsetTop) {
   }
 }
 else {
-  const F_HEAD = document.getElementsByClassName('fixed-head')[0];
+  const F_HEAD = document.getElementsByTagName('table')[0]
+                         .getElementsByClassName('being-fixed')[0];
   F_HEAD.classList.add('hide');
 }
 }
 
 /**
+ * 当点击表格中的编辑或者删除时触发
+ * 弹出相应的遮罩层
+ * @event .rs-table
+ */
+function handleTable(event) {
+  if (event.target.className === 'rs-table-edit') {
+    //阻止浏览器滚动
+    document.body.classList.add('prevent-scroll');
+    showMask();
+  }
+  else if (event.target.className === 'rs-table-delete') {
+    document.body.classList.add('prevent-scroll');
+    showMask();
+  }
+  else {
+    return;
+  }
+}
+
+function showMask() {
+  const MASK = document.getElementsByClassName('mask')[0];
+  MASK.style.height = document.body.clientHeight + 'px';
+}
+
+function preventDefault(event) {
+  event.preventDefault();
+  return false;
+}
+
+/**
 * 主函数
 */
-
-lsNavData = JSON.parse(lsNavDataJstring);
 getNavData();
+getTableData();
 const LS_NAV = document.getElementsByClassName('ls-nav')[0];
 let maxHeight = LS_NAV.scrollHeight;
-LS_NAV.addEventListener('click', toggleLsSubNav, false);
 addLsNavHeight();
+LS_NAV.addEventListener('click', toggleLsSubNav, false);
+
 window.addEventListener('resize', addLsNavHeight, false);
 window.addEventListener('scroll', showFixedHead, false);
 window.addEventListener('scroll', addLsNavHeight, false);
+
+const RS_TABLE = document.getElementsByClassName('rs-table')[0];
+RS_TABLE.addEventListener('click', handleTable, false);

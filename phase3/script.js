@@ -9,7 +9,7 @@
    let maxHeight = LS_NAV.scrollHeight;
    return function () {
      let pageHeight = document.documentElement.clientHeight;
-     let newHeight = pageHeight - LS_NAV.getBoundingClientRect().top;
+     let newHeight = pageHeight - LS_NAV.getBoundingClientRect().top - 2;
      LS_NAV.style.height = maxHeight >= newHeight ? newHeight + 'px' : maxHeight + 'px';
    };
  }

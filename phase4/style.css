@@ -176,12 +176,34 @@ td, th {
 .row:nth-child(even) {
   background-color: #eee;
 }
+.rs-table-edit:hover,
+.rs-table-delete:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.rs-table-edit:hover {
+  background-color: #009688;
+}
+.rs-table-delete:hover {
+  background-color: #f44336;
+}
 .t-head {
   background-color: #7b7b7b;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: .5;
+  background-color: #000;
 }
 .hide {
   display: none;
 }
-.fixed-head {
+.being-fixed {
   position: fixed;
+}
+.prevent-scroll {
+  overflow: hidden;
 }
