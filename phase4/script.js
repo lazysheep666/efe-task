@@ -56,12 +56,10 @@ function toggleLsSubNav(event) {
     const CURR_NAV_SUBS = event.target.nextElementSibling;
     if (CURR_NAV_SUBS.classList.contains('hide')) {
       CURR_NAV_SUBS.classList.remove('hide');
-    } else {
-      if (maxHeight === LS_NAV.clientHeight) {
-        //当左侧导航滑到低并点击收回二级导航时
-        //导航的长度收缩
-        LS_NAV.style.height = LS_NAV.clientHeight - CURR_NAV_SUBS.clientHeight + 'px';
-      }
+    }
+    else {
+      //导航的长度收缩
+      LS_NAV.style.height = LS_NAV.clientHeight - CURR_NAV_SUBS.clientHeight + 'px';
       CURR_NAV_SUBS.classList.add('hide');
     }
     //每次点击重新设置maxHeight 并且重新设置导航的长度
