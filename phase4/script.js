@@ -91,6 +91,8 @@ else {
 /**
 * 主函数
 */
+
+lsNavData = JSON.parse(lsNavDataJstring);
 getNavData();
 const LS_NAV = document.getElementsByClassName('ls-nav')[0];
 let maxHeight = LS_NAV.scrollHeight;
