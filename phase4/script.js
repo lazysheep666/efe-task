@@ -34,7 +34,8 @@ function toggleLsSubNav(event) {
     }
     //每次点击重新设置maxHeight 并且重新设置导航的长度
     maxHeight = LS_NAV.scrollHeight;
-    getNavData();
+    console.log(maxHeight);
+    addLsNavHeight();
 
   } else {
     return;
