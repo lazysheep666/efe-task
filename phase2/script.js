@@ -1,32 +1,3 @@
-/**
- * 移入目标元素（包含子元素）时触发
- *
- * @event .nav-item
- * @param {Object} e 事件对象
- */
-
-// function showSubNav(e) {
-// 	const SUB_ITEMS = e.currentTarget.getElementsByClassName('nav-sub')[0];
-// 	SUB_ITEMS.style.display = 'block';
-// }
-//
-// /**
-//  * 移出目标元素（包含子元素）时触发
-//  *
-//  * @event .nav-item
-//  * @param {Object} e 事件对象
-//  */
-//
-// function hideSubNav(e) {
-// 	const SUB_ITEMS = e.currentTarget.getElementsByClassName('nav-sub')[0];
-// 	SUB_ITEMS.style.display = 'none';
-// }
-//
-// const NAV_ITEMS = document.getElementsByClassName('nav-item');
-// for (let i = 1, len = NAV_ITEMS.length; i < len; i++) {
-// 	NAV_ITEMS[i].addEventListener('mouseover', showSubNav, false);
-// 	NAV_ITEMS[i].addEventListener('mouseout', hideSubNav, false);
-// }
 
 /**
  * 切换照片按钮

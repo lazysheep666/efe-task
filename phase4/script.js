@@ -35,12 +35,13 @@ function getTableData() {
     let productName = rsTableData[item].content.split(' ')[0];
     let productPrice = rsTableData[item].content.split(' ')[1];
     rowDataString = ''
-      + '<tr class="row">'
-      +   `<td>${productName}</td>`
-      +   `<td>${productPrice}</td>`
-      +   '<td class="rs-table-edit">Edite</td>'
-      +   '<td class="rs-table-delete">Delete</td>'
-      + '</tr>';
+      +  `<tr class="row" data-id="${rsTableData[item].id}"`
+      +  `data-name="${rsTableData[item].name}" data-val="${rsTableData[item].value}">`
+      +    `<td>${productName}</td>`
+      +    `<td>${productPrice}</td>`
+      +    '<td class="rs-table-edit">Edite</td>'
+      +    '<td class="rs-table-delete">Delete</td>'
+      +  '</tr>';
     rsTableDataString += rowDataString;
   }
   RS_TABLE.innerHTML = rsTableDataString;
@@ -129,24 +130,151 @@ function handleTable(event) {
     //阻止浏览器滚动
     document.body.classList.add('prevent-scroll');
     showMask();
+    showEditeBox(event);
   }
   else if (event.target.className === 'rs-table-delete') {
     document.body.classList.add('prevent-scroll');
     showMask();
+    showDeleteBox();
   }
   else {
     return;
   }
+  //编辑框跟删除框
+  const POP_BOXS = document.getElementsByClassName('pop-box');
+  for (const POP_BOX of POP_BOXS) {
+    POP_BOX.dataset.id = event.target
+                              .parentElement
+                              .dataset.id;
+  }
+  //编辑框跟删除框的确认按钮
+  const POP_CON_BTNS = document.getElementsByClassName('pop-box-confirm');
+  //给编辑框的确定按钮添加修改表格数据事件
+  POP_CON_BTNS[0].addEventListener('click', editeData, false);
+  //给删除框的确定按钮添加删除表格数据事件
+  POP_CON_BTNS[1].addEventListener('click', deleteData, false);
+  //编辑框跟删除框的取消按钮
+  const POP_CAN_BTNS = document.getElementsByClassName('pop-box-cancle');
+  //将编辑框跟弹出框的data-id
+  //设置为需要更改数据或删除数据的item的同一个data-id
+  for (const POP_CAN_BTN of POP_CAN_BTNS) {
+    POP_CAN_BTN.addEventListener('click', hideMask, false);
+  }
+
 }
 
+/**
+ * 弹出遮罩层
+ */
 function showMask() {
   const MASK = document.getElementsByClassName('mask')[0];
   MASK.style.height = document.body.clientHeight + 'px';
+  MASK.classList.remove('hide');
 }
 
-function preventDefault(event) {
-  event.preventDefault();
-  return false;
+/**
+ * 点击取消时隐藏遮罩层以及弹出框
+ * @event
+ */
+function hideMask(event) {
+  //浏览器可以滑动
+  document.body.classList.remove('prevent-scroll');
+  //隐藏编辑框或者删除框
+  event.currentTarget
+       .parentElement
+       .parentElement
+       .classList
+       .add('hide');
+  //隐藏遮罩
+  const MASK = document.getElementsByClassName('mask')[0];
+  MASK.classList.add('hide');
+}
+
+/**
+ * 弹出编辑框
+ */
+function showEditeBox(event) {
+  const EDITE_BOX = document.getElementById('edite-box');
+  EDITE_BOX.classList.remove('hide');
+
+  let itemID = event.target
+                    .parentElement
+                    .dataset
+                    .id;
+  //初始化input框的值
+  const EDITE_INPUTS = document.getElementById('edite-box')
+                               .getElementsByTagName('input');
+  EDITE_INPUTS[0].value = rsTableData[itemID].name;
+  EDITE_INPUTS[1].value = rsTableData[itemID].content;
+  EDITE_INPUTS[2].value = rsTableData[itemID].value;
+  //设置弹出框的偏移
+  setPopBoxOffset();
+}
+
+/**
+ * 弹出删除框
+ */
+function showDeleteBox() {
+  const DELETE_BOX = document.getElementById('delete-box');
+  DELETE_BOX.classList.remove('hide');
+  setPopBoxOffset();
+}
+
+/**
+ * 设置弹出框的偏移
+ */
+function setPopBoxOffset() {
+  const EDITE_BOXS = document.getElementsByClassName('pop-box');
+  for (const EDITE_BOX of EDITE_BOXS) {
+    EDITE_BOX.style.top = (document.documentElement.clientHeight / 2) - (EDITE_BOX.clientHeight) / 2 + 'px';
+    EDITE_BOX.style.left = (document.documentElement.clientWidth / 2) - (EDITE_BOX.clientWidth) / 2 + 'px';
+  }
+}
+
+/**
+ * 点击编辑框的确认时修改数据
+ * 并且隐藏遮罩层以及弹出框
+ * @event
+ */
+function editeData(event) {
+  let itemID = event.currentTarget
+                    .parentElement
+                    .parentElement
+                    .dataset
+                    .id;
+  const EDITE_INPUTS = document.getElementById('edite-box')
+                               .getElementsByTagName('input');
+
+  let name = EDITE_INPUTS[0].value;
+  let content = EDITE_INPUTS[1].value;
+  let value = EDITE_INPUTS[2].value;
+  //更新JSON对象中的数据
+  rsTableData[itemID].name = name;
+  rsTableData[itemID].content = content;
+  rsTableData[itemID].value = value;
+  //重新渲染表格
+  getTableData();
+  //隐藏遮罩层以及弹出框
+  hideMask(event);
+}
+
+/**
+ * 点击删除框的确认时删除数据
+ * 并且隐藏遮罩层以及弹出框
+ * @event
+ */
+function deleteData(event) {
+  let itemID = event.currentTarget
+                    .parentElement
+                    .parentElement
+                    .dataset
+                    .id;
+  //删除JSON对象中的数据
+  delete rsTableData[itemID];
+  //重新渲染表格
+  getTableData();
+  //隐藏遮罩层以及弹出框
+  hideMask(event);
 }
 
 /**
@@ -160,6 +288,7 @@ addLsNavHeight();
 LS_NAV.addEventListener('click', toggleLsSubNav, false);
 
 window.addEventListener('resize', addLsNavHeight, false);
+window.addEventListener('resize', setPopBoxOffset, false);
 window.addEventListener('scroll', showFixedHead, false);
 window.addEventListener('scroll', addLsNavHeight, false);
 
