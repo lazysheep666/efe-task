@@ -15,12 +15,6 @@ background-color: #f0f0f0;
 display: flex;
 flex-flow: row;
 }
-.row > div {
-margin: 5px;
-height: 100px;
-border: 1px solid #888;
-background-color: #c0c0c0;
-}
 #container-1 {
 display: flex;
 flex-direction: column;
@@ -33,7 +27,11 @@ display: flex;
 flex-flow: column;
 }
 [class ^= 'align-row-'] > .box {
+margin: 5px;
+height: 100px;
 width: 100px;
+border: 1px solid #888;
+background-color: #c0c0c0;
 }
 .align-row-2 {
 justify-content: flex-end;
@@ -45,8 +43,12 @@ flex-flow: column;
 .grid-row-1 {
 margin-top: 40px;
 }
-[class ^= "grid-row-"] > .gird {
+[class ^= "grid-row-"] > .grid {
 flex: auto;
+margin: 5px;
+height: 100px;
+border: 1px solid #888;
+background-color: #c0c0c0;
 }
 .HolyGrid {
 display: flex;
@@ -66,7 +68,7 @@ margin-top: 40px;
 }
 .HolyGrid > .main {
 display: flex;
-flex-flow: column;
+flex-flow: row;
 flex: auto;
 }
 .main > .center {
@@ -78,44 +80,45 @@ background-color: #c0c0c0;
 order: -1;
 }
 .main > .left-nav , .right-nav{
+flex: none;
 margin: 5px;
 width: 80px;
-background-color: #888;
+background-color: #c0c0c0;
 }
 #container-2 {
-  display: flex;
-  padding: 5px;
-  margin: 50px 10px 10px 10px;
-  height: 150px;
-  border: 2px solid #888;
+display: flex;
+flex-flow: column;
+padding: 5px;
+margin: 50px 10px 10px 10px;
+border: 2px solid #888;
 }
-
-#container-3 {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  margin: 50px 10px 10px 10px;
-  height: 150px;
-  border: 2px solid #888;
-}
-#container-2 > .picture {
-flex-shrink: 0;
+.picture-row-1 > img {
+flex: none;
 margin-right: 15px;
 width: 100px;
 height: 100px;
 background-color: #c0c0c0;
 }
-#container-2 > .text-container{
-flex: 1;
+.picture-row-1 > .text-container > p{
+flex: auto;
+overflow: hidden;
 }
-
-#container-3 > div {
-  margin: 5px;
-  height: 100px;
-  width: 100px;
-  min-width: 100px;
-  border: 2px solid #888;
-  background-color: #c0c0c0;
+#container-3 {
+display: flex;
+flex-flow: column;
+padding: 5px;
+margin: 50px 10px 10px 10px;
+border: 2px solid #888;
+}
+#container-3 > .splite-row-1 {
+justify-content: space-between;
+}
+[class ^= 'splite-row-'] > .splite-box{
+margin: 5px;
+width: 100px;
+height: 100px;
+border: 1px solid #888;
+background-color: #c0c0c0;
 }
   </style>
 </head>
