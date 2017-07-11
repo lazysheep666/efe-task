@@ -1,113 +1,114 @@
+
 @background-color: #f0f0f0;
 @box-color: #c0c0c0;
 @border-color: #888;
 @box-height: 100px;
 
 #mix-group {
-	.flex-default(@direction: row) {
-		display: flex;
-		flex-flow: @direction;
-	};
-	.box-default(@margin: 0; @padding: 0; @border: 0; @width: auto; @height: auto) {
-		margin: @margin;
-		padding: @padding;
-		border: @border;
-		width: @width;
-		height: @height;
-	};
+  .flex-default(@direction: row) {
+    display: flex;
+    flex-flow: @direction;
+  };
+  .box-default(@margin: 0; @padding: 0; @border: 0; @width: auto; @height: auto) {
+    margin: @margin;
+    padding: @padding;
+    border: @border;
+    width: @width;
+    height: @height;
+  };
 }
 .row {
-	#mix-group > .flex-default();
-	div {
-		#mix-group > .box-default(@margin: 5px; @border: 1px solid @border-color; @height: @box-height);
-		background-color: @box-color;
-	}
+  #mix-group > .flex-default();
+  div {
+    #mix-group > .box-default(@margin: 5px; @border: 1px solid @border-color; @height: @box-height);
+    background-color: @box-color;
+  }
 }
 .flex-col {
-	#mix-group > .flex-default(column);
+  #mix-group > .flex-default(column);
 }
 .flex-row {
-	#mix-group > .flex-default(row);
+  #mix-group > .flex-default(row);
 }
 .align-layout {
-	&:extend(.flex-col);
-	.box {
-		&:extend(.row > div);
-		width: 100px;
-	}
-	.align-row-2 {
-		justify-content: flex-end;
-	}
+  &:extend(.flex-col);
+  .box {
+    &:extend(.row > div);
+    width: 100px;
+  }
+  .align-row-2 {
+    justify-content: flex-end;
+  }
 }
 .grid-layout {
-	&:extend(.flex-col);
-	.grid-row-1 {
-		#mix-group > .box-default(50px 0 0 0);
-	}
-	.grid {
-		flex: auto;
-	}
+  &:extend(.flex-col);
+  .grid-row-1 {
+    #mix-group > .box-default(50px 0 0 0);
+  }
+  .grid {
+    flex: auto;
+  }
 }
 .HolyGrid {
-	&:extend(.flex-col);
+  &:extend(.flex-col);
   #mix-group > .box-default(@height: 300px);
-	.header {
-		flex: none;
-		background-color: @box-color;
-		#mix-group > .box-default(20px 5px 5px 5px; 5px; 2px solid @border-color; @height: 50px);
-	}
-	.footer {
-		&:extend(.HolyGrid .header);
-		margin-top: 0;
-	}
-	.main {
-		&:extend(.flex-row);
-		flex: auto;
-		.center {
-			flex: auto;
-			#mix-group > .box-default(5px);
-			background-color: @box-color;
-		}
-		.left-nav {
-			order: -1;
-			&:extend(.HolyGrid .main .right-nav);
-		}
-		.right-nav {
-			#mix-group > .box-default(5px; @width: 80px);
-			background-color: @box-color;
-		}
-	}
+  .header {
+    flex: none;
+    background-color: @box-color;
+    #mix-group > .box-default(20px 5px 5px 5px; 5px; 2px solid @border-color; @height: 50px);
+  }
+  .footer {
+    &:extend(.HolyGrid .header);
+    margin-top: 0;
+  }
+  .main {
+    &:extend(.flex-row);
+    flex: auto;
+    .center {
+      flex: auto;
+      #mix-group > .box-default(5px);
+      background-color: @box-color;
+    }
+    .left-nav {
+      order: -1;
+      &:extend(.HolyGrid .main .right-nav);
+    }
+    .right-nav {
+      #mix-group > .box-default(5px; @width: 80px);
+      background-color: @box-color;
+    }
+  }
 }
 
 #container {
-	#mix-group > .box-default(10px; 5px; 2px solid @border-color);
-	&-1 {
-		&:extend(.flex-col, #container);
-	}
-	&-2 {
-		&:extend(.flex-row, #container);
-		margin-top: 50px;
-		height: 150px;
-		.picture {
-			flex-shrink: 0;
-			#mix-group > .box-default(@margin: 0 5px 0 0; @height: @box-height; @width: 100px);
-			background-color: @box-color;
+  #mix-group > .box-default(10px; 5px; 2px solid @border-color);
+  &-1 {
+    &:extend(.flex-col, #container);
+  }
+  &-2 {
+    &:extend(.flex-row, #container);
+    margin-top: 50px;
+    height: 150px;
+    .picture {
+      flex-shrink: 0;
+      #mix-group > .box-default(@margin: 0 5px 0 0; @height: @box-height; @width: 100px);
+      background-color: @box-color;
 		}
-		.text-container {
-			flex: 1;
-			p {
-				margin: 0;
-			}
-		}
-	}
-	&-3 {
-		&:extend(.flex-row, #container);
-		justify-content: space-between;
-		margin-top: 50px;
-		height: 150px;
-		div {
-			#mix-group > .box-default(5px; 0; 2px solid @border-color; 100px; 100px);
-			background-color: @box-color;
-	        }
-	}
+    .text-container {
+      flex: 1;
+      p {
+        margin: 0;
+      }
+    }
+  }
+  &-3 {
+    &:extend(.flex-row, #container);
+    justify-content: space-between;
+    margin-top: 50px;
+    height: 150px;
+    div {
+      #mix-group > .box-default(5px; 0; 2px solid @border-color; 100px; 100px);
+      background-color: @box-color;
+    }
+  }
 }
