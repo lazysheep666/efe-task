@@ -1,0 +1,177 @@
+@import '../bootstrap/css/bootstrap.min.css';
+$border-color: #eee;
+$pic-des-color: #fff;
+$con-des-color: #000;
+$time-color: #e2dede;
+$pic-size: 100%;
+$title-size: 1.5rem;
+$cont-size: 1rem;
+$time-size: 1rem;
+
+@mixin flex($dire: row, $isWrap: false, $justify: flex-start, $align: flex-start) {
+  display: flex;
+  flex-direction: $dire;
+  @if $isWrap {
+    flex-wrap: wrap;
+  } @else {
+    flex-wrap: nowrap;
+  }
+  justify-content: $justify;
+  align-items: $align;
+}
+
+%pic-des-de {
+  position: absolute;
+  bottom: 0;
+  max-height: 60%;
+  color: $pic-des-color;
+}
+%title-font {
+  font-size: $title-size;
+}
+%cont-font {
+  font-size: $cont-size;
+}
+%time-font {
+  font-size: $time-size;
+  color: $time-color;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font: {
+    size: 62.5%;
+    family: "microsoft yahei", sans-serif;
+  }
+}
+body,
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+img {
+  width: 100%;
+}
+.header {
+  @include flex($justify: space-between);
+  padding: 1em 2em;
+  font-size: 2rem;
+  background-color: #000;
+  color: #fff;
+  .nav {
+    @include flex();
+    .nav-item {
+      margin-left: 1em;
+    }
+  }
+}
+.banner {
+  margin-bottom: 3em;
+}
+.main {
+  .pic {
+    @each $index in 1, 2, 3 {
+      &-#{$index} {
+        position: relative;
+        font-size: 0;
+      }
+    }
+    .pic-des {
+      @extend %pic-des-de;
+      padding: 1em;
+      background: rgba(0, 0, 0, 0.6);
+      .title {
+        @extend %title-font;
+      }
+      .cont {
+        @extend %cont-font;
+      }
+    }
+  }
+  .move-pic {
+    position: relative;
+    .pic-des {
+      @extend %pic-des-de;
+      left: 50%;
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+      .title {
+        @extend %title-font;
+      }
+      .cont {
+        @extend %cont-font;
+      }
+    }
+  }
+  .article {
+    margin-top: 2em;
+    border-top: 2px solid $border-color;
+    @each $index in 1, 2, 3 {
+      &-#{$index} {
+        margin-bottom: 2em;
+        color: $con-des-color;
+      }
+    }
+    .title {
+      @extend %title-font;
+    }
+    .con {
+      @extend %cont-font;
+    }
+  }
+  .list {
+    @media screen and (min-width: 992px) {
+      margin-top: -5em;
+    }
+    color: $con-des-color;
+    .title {
+      @extend %title-font;
+    }
+    .time {
+      @extend %time-font;
+    }
+    &-des {
+      margin: 2em 0;
+    }
+  }
+}
+.footer {
+  height: 5em;
+  @include flex($justify: center, $align: center);
+  color: #fff;
+  font-size: 2rem;
+  background: #000;
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    @include flex($justify: center);
+    .nav {
+      @include flex($justify: space-between, $align: center);
+      position: fixed;
+      z-index: 999999;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5em;
+      color: $con-des-color;
+      background-color: #eee;
+      .nav-item {
+        padding: 2em;
+      }
+    }
+  }
+  .pic {
+    margin-bottom: 3em;
+  }
+  .list-des {
+    padding: 2em;
+    border: 2px solid $border-color;
+  }
+}
