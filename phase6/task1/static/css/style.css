@@ -18,6 +18,7 @@
   padding: 2em 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   grid-column-gap: 1rem;
   align-items: center; }
 
@@ -152,6 +153,12 @@ img {
     grid-auto-columns: auto; }
     .main .pic {
       margin-bottom: 3em; }
+    .main .article img {
+      grid-column: 2/3;
+      grid-row: 1/2; }
+    .main .article .des {
+      grid-column: 1/2;
+      grid-row: 1/2; }
     .main .list-des {
       padding: 2em;
       border: 2px solid #eee; } }
