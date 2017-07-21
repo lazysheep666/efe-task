@@ -1,3 +1,3 @@
-## git install
+## npm install
 
-## git start
+## npm start
