@@ -44,6 +44,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new webpack.ProvidePlugin({
+      Hammer: 'hammerjs'
+    }),
     new UglifyJSPlugin()
   ]
 };

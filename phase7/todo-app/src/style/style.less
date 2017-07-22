@@ -1,6 +1,6 @@
 @import "one";
 @import "all";
-
+@import "edit";
 /**
  * 通用部分样式
  */
@@ -73,7 +73,7 @@ body {
 }
 .header {
   .flex();
-  .section;
+  &:extend(.section);
   .hd-title {
     font-size: @font-lev-1;
   }
@@ -85,16 +85,33 @@ body {
 .main {
   flex: auto;
   .todo {
+    position: relative;
     .flex(flex-start);
     margin: @y-gutter @x-gutter;
     padding: 1rem;
     .border-default();
     font-size: @font-lev-2;
+    .operate-one {
+      .flex(@align: stretch);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background-color: @main-color;
+    }
+    .operate-two {
+      &:extend(.main .todo .operate-one);
+      left: 0;
+      right: auto;
+    }
+    .operate-item {
+      padding: 2rem;
+    }
   }
 }
 .footer {
   .flex();
-  .section();
+  &:extend(.section);
   padding: 0 5rem;
   .ft-item {
     font-size: @font-lev-1;

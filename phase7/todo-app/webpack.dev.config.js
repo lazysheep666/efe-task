@@ -44,7 +44,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin() // 启用 HMR
+    new webpack.HotModuleReplacementPlugin(), // 启用 HMR
+    new webpack.ProvidePlugin({
+      Hammer: "hammerjs/hammer"
+    })
   ],
   devServer: {
     port: 7777,

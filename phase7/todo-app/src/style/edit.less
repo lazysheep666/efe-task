@@ -1,0 +1,32 @@
+/**
+ * 编辑界面的样式（包括添加跟修改）
+ */
+
+.edit-warnning {
+  padding-bottom: .5rem !important;
+  background-color: #fff !important;
+  &:extend(.warnning);
+}
+.edit-warn-item {
+  .border-default();
+}
+.edit-status {
+  padding-bottom: .5rem !important;
+  background-color: #fff !important;
+  &:extend(.status);
+  &-item {
+   .border-default();
+  }
+ }
+.edit-content {
+  display: block;
+  margin: 1rem auto;
+  width: 80%;
+  height: 8rem;
+  .border-default();
+  font-size: 2rem;
+  white-space: pre-wrap;
+}
+.item-choosed {
+  border-color: #e63232;
+}

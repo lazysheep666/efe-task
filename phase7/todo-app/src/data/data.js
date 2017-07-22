@@ -3,13 +3,13 @@ let data = {
   "todos": [
     {
       "content": "Some Text about Task,Some Text about Task,Some Text about Task",
-      "warnning-lev": 0,
-      "status-lev": 0
+      "warnning-lev": 2,
+      "status-lev": 2
     },
     {
       "content": "Some Text about Task,Some Text about Task,Some Text about Task",
-      "warnning-lev": 2,
-      "status-lev": 2
+      "warnning-lev": 0,
+      "status-lev": 0
     },
     {
       "content": "Some Text about Task,Some Text about Task,Some Text about Task",
