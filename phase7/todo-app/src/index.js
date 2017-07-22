@@ -1,4 +1,5 @@
 import './style/style.less';
+import 'font-awesome-webpack';
 import data from './data/data.js';
 import view from './view/view.js';
 import publicMut from './mutation/public.js';

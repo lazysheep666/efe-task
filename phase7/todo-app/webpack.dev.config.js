@@ -40,6 +40,12 @@ module.exports = {
           'css-loader',
           'less-loader'
         ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
