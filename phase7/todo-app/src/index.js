@@ -2,7 +2,10 @@ import './style/style.less';
 import 'font-awesome-webpack';
 import data from './data/data.js';
 import view from './view/view.js';
-import publicMut from './mutation/public.js';
+import headMut from './mutation/header.js';
+import footMut from './mutation/footer.js';
+import mainEditMut from './mutation/main_edit.js';
+import mainAllOneMut from './mutation/main_all_and_one.js';
 
 if (!localStorage.toDoData) {
   localStorage.toDoData = JSON.stringify(data);
@@ -16,36 +19,36 @@ if (toDoData.page === 'one') {
   view.allView(toDoData);
 }
 
-// //添加切页面的事件处理程序
-
+//添加header部分的事件处理程序
 const HEADER = new Hammer(document.getElementsByClassName('header')[0]);
 HEADER.on('tap', (e) => {
   switch (e.target.id) {
     case 'add':
-      publicMut.addToDo(toDoData);
+      headMut.addToDo(toDoData);
       break;
     case 'cancle':
-      publicMut.backToPage(toDoData);
+      headMut.cancle(toDoData);
       break;
     case 'add-done':
-      publicMut.addDone(toDoData);
+      headMut.addDone(toDoData);
       break;
     case 'edit-done':
-      publicMut.editDone(e.target.dataset.index, toDoData);
+      headMut.editDone(e.target.dataset.index, toDoData);
       break;
     default:
       return;
   }
 });
 
+//添加main部分的事件处理程序
 const MAIN = new Hammer(document.getElementsByClassName('main')[0]);
 MAIN.on('tap', (e) => {
   switch (e.target.className) {
     case 'edit-warn-item':
-      publicMut.chooseWarn(e);
+      mainEditMut.chooseWarn(e);
       break;
     case 'edit-status-item':
-    publicMut.chooseStatus(e);
+      mainEditMut.chooseStatus(e);
       break;
     default:
       return;
@@ -53,23 +56,24 @@ MAIN.on('tap', (e) => {
 })
 MAIN.on('tap', (e) => {
   let classList = e.target.classList;
+  let index = e.target.parentElement.parentElement.dataset.index;
   if (classList.contains('edit-todo')) {
-    publicMut.editToDo(e.target.parentElement.parentElement.dataset.index, toDoData);
+    mainAllOneMut.editToDo(index, toDoData);
   } else if (classList.contains('delete-todo')) {
-    publicMut.deleteToDo(e.target.parentElement.parentElement.dataset.index, toDoData);
+    mainAllOneMut.deleteToDo(index, toDoData);
   } else if (classList.contains('doing-todo')) {
-    publicMut.doingToDo(e.target.parentElement.parentElement.dataset.index, toDoData);
+    mainAllOneMut.doingToDo(index, toDoData);
   } else if (classList.contains('need-todo')) {
-    publicMut.needToDo(e.target.parentElement.parentElement.dataset.index, toDoData);
+    mainAllOneMut.needToDo(index, toDoData);
   } else if (classList.contains('complete-todo')) {
-    publicMut.completeToDo(e.target.parentElement.parentElement.dataset.index, toDoData);
+    mainAllOneMut.completeToDo(index, toDoData);
   } else {
     return;
   }
 })
 MAIN.on('swipeleft', (e) => {
   if (e.target.className === 'todo') {
-    publicMut.showOperateOne(e.target.dataset.index);
+    mainAllOneMut.showOperateOne(e.target.dataset.index);
   }
   else {
     return;
@@ -77,21 +81,22 @@ MAIN.on('swipeleft', (e) => {
 });
 MAIN.on('swiperight', (e) => {
   if (e.target.className === 'todo') {
-    publicMut.showOperateTwo(e.target.dataset.index);
+    mainAllOneMut.showOperateTwo(e.target.dataset.index);
   }
   else {
     return;
   }
 });
 
+//添加footer部分的事件处理程序
 const FOOTER = new Hammer(document.getElementsByClassName('footer')[0]);
 FOOTER.on('tap', (e) => {
   switch (e.target.id) {
     case 'one':
-      publicMut.changeToOne(toDoData);
+      footMut.changeToOne(toDoData);
       break;
     case 'all':
-      publicMut.changeToALL(toDoData);
+      footMut.changeToALL(toDoData);
       break;
     default:
       return;
